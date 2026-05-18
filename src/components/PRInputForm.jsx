@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-function PRInputForm({ onAnalyze }) {
+function PRInputForm({ onAnalyze, isLoading }) {
     const [prUrl, setPrUrl] = useState('')
     const [error, setError] = useState('')
 
@@ -40,6 +40,7 @@ function PRInputForm({ onAnalyze }) {
                 className="mt-10 flex w-full max-w-2xl gap-3 sm:flex-row"
             >
                 <input
+                    disabled={isLoading}
                     value={prUrl}
                     onChange={(event) => setPrUrl(event.target.value)}
                     className="flex-1 rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm outline-none focus:border-slate-900 sm:text-base"
@@ -47,9 +48,9 @@ function PRInputForm({ onAnalyze }) {
                 />
 
                 <button 
-                    onSubmit={handleSubmit}
+                    disabled={isLoading}
                     className="rounded-xl bg-slate-900 px-6 py-3 font-semibold text-white hover:bg-slate-700 sm:w-auto">
-                    Analyze PR
+                    {isLoading ? 'Analyzing...' : 'Analyze PR'}
                 </button>
             </form>
             {error &&(

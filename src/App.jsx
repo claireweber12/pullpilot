@@ -5,37 +5,44 @@ import ReviewResults from './components/ReviewResults'
 
 function App() {
   const [reviewData, setReviewData] = useState(null)
-  function handleAnalyze(parsedPr){
-    console.log('Analyze this PR:', parsedPr)
-    setReviewData({
-      pr:{
-        title: 'Add auth workflow', 
-        author: 'JohnDoe',
-        filesChanged:4,
-        additions:128,
-        deletions:32,
-      },
-      review:{
-        summary:
-        'This PR adds a basic authentication flow, includinf login form handling, protected routes, and token storage.',
-        riskLevel: 'medium',
-        verdict: 'request_changes',
-        potentialBugs:[],
-        edgeCases:[
-          {
-            case: 'Missing or malformed token',
-            recommendation: 'Handle invalid token parsing and clear the stored session.',
-          },
-        ],
-        styleIssues: [
-          {
-            file: 'src/components/Login.jsx',
-            issue: 'Validation logic is repeated inside the submit handler.',
-            suggestion: 'Move validation into a helper function for readability.',
-          },
-        ],
-      },
-    })
+  const [isLoading, setIsLoading] = useState(false)
+  function handleAnalyze(parsedPr) {
+    setIsLoading(true)
+    setReviewData(null)
+
+    setTimeout(() => {
+      setReviewData({
+        pr: {
+          title: 'Add authentication flow',
+          author: 'octocat',
+          filesChanged: 4,
+          additions: 128,
+          deletions: 32,
+        },
+        review: {
+          summary:
+            'This PR adds a basic authentication flow, including login form handling, protected routes, and token storage.',
+          riskLevel: 'medium',
+          verdict: 'request_changes',
+          potentialBugs: [],
+          edgeCases: [
+            {
+              case: 'Missing or malformed token',
+              recommendation: 'Handle invalid token parsing and clear the stored session.',
+            },
+          ],
+          styleIssues: [
+            {
+              file: 'src/components/Login.jsx',
+              issue: 'Validation logic is repeated inside the submit handler.',
+              suggestion: 'Move validation into a helper function for readability.',
+            },
+          ],
+        },
+      })
+
+      setIsLoading(false)
+    }, 1000)
   }
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-10">

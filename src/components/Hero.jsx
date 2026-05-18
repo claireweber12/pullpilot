@@ -1,6 +1,6 @@
 import PRInputForm from './PRInputForm'
 
-function Hero({ onAnalyze }) {
+function Hero({ onAnalyze, isLoading }) {
   return (
     <section className="mx-auto flex max-w-5xl flex-col items-center text-center">
         <p className="rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-sm">AI Code Review Assistant</p>
@@ -12,7 +12,7 @@ function Hero({ onAnalyze }) {
             potential bugs, edge cases, style feedback, and a suggested verdict.
         </p>
 
-        <PRInputForm onAnalyze={onAnalyze} />
+        <PRInputForm onAnalyze={onAnalyze} isLoading={isLoading} />
     </section>
     
   )

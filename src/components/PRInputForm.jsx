@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-function PRInputForm() {
+function PRInputForm({ onAnalyze }) {
     const [prUrl, setPrUrl] = useState('')
     const [error, setError] = useState('')
 
@@ -30,6 +30,7 @@ function PRInputForm() {
         }
         
         setError('')
+        onAnalyze(parsedUrl)
         console.log(parsedUrl)
     }
     return (

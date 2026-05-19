@@ -2,6 +2,7 @@ import express from 'express'
 import {parsePrUrl} from '../utils/parsePrUrl.js'
 import { createFakeReview } from '../services/reviewService.js'
 import { getPullRequest, getPullRequestFiles } from '../services/githubService.js'
+import { formatPullRequestDiff } from '../services/diffFormatter.js'
 
 const router = express.Router()
 
@@ -28,9 +29,8 @@ router.post('/review', async (req, res) => {
     parsedPr.pullNumber
     )
 
-    console.log(
-    githubFiles.map((file) => file.filename)
-    )
+    const formattedDiff = formatPullRequestDiff(githubFiles)
+    console.log(formattedDiff.slice(0,1000))
 
     const reviewData = createFakeReview(prUrl, parsedPr, githubPr, githubFiles)
     res.json(reviewData)

@@ -30,7 +30,7 @@ function PRInputForm({ onAnalyze, isLoading }) {
         }
         
         setError('')
-        onAnalyze(parsedUrl)
+        onAnalyze(prUrl.trim())
         console.log(parsedUrl)
     }
     return (

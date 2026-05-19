@@ -1,7 +1,7 @@
 import express from 'express'
 import {parsePrUrl} from '../utils/parsePrUrl.js'
 import { createFakeReview } from '../services/reviewService.js'
-import { getPullRequest } from '../services/githubService.js'
+import { getPullRequest, getPullRequestFiles } from '../services/githubService.js'
 
 const router = express.Router()
 
@@ -22,7 +22,17 @@ router.post('/review', async (req, res) => {
     )
     console.log(githubPr.title)
 
-    const reviewData = createFakeReview(prUrl, parsedPr, githubPr)
+    const githubFiles = await getPullRequestFiles(
+    parsedPr.owner,
+    parsedPr.repo,
+    parsedPr.pullNumber
+    )
+
+    console.log(
+    githubFiles.map((file) => file.filename)
+    )
+
+    const reviewData = createFakeReview(prUrl, parsedPr, githubPr, githubFiles)
     res.json(reviewData)
 
   } catch (error){

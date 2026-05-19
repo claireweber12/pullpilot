@@ -1,4 +1,4 @@
-export function createFakeReview(prUrl, parsedPr, githubPr) {
+export function createFakeReview(prUrl, parsedPr, githubPr, githubFiles) {
   return {
     pr: {
       title: githubPr.title,
@@ -9,6 +9,13 @@ export function createFakeReview(prUrl, parsedPr, githubPr) {
       url: githubPr.html_url,
       repo: `{parsedPr.owner}/${parsedPr.repo}`,
       pullNumber: parsedPr.pullNumber,
+      files: githubFiles.map((file) => ({
+      filename: file.filename,
+      status: file.status,
+      additions: file.additions,
+      deletions: file.deletions,
+      changes: file.changes,
+    }))
     },
     review: {
       summary:

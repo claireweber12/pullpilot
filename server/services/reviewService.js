@@ -1,8 +1,8 @@
-export function createFakeReview(prUrl) {
+export function createFakeReview(prUrl, parsedPr) {
   return {
     pr: {
-      title: 'Add authentication flow',
-      author: 'octocat',
+      title: `Review for ${parsedPr.owner}/${parsedPr.repo} PR #${parsedPr.pullNumber}`,
+      author: 'JohnDoe',
       filesChanged: 4,
       additions: 128,
       deletions: 32,

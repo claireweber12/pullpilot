@@ -3,6 +3,7 @@ import {parsePrUrl} from '../utils/parsePrUrl.js'
 import { createFakeReview } from '../services/reviewService.js'
 import { getPullRequest, getPullRequestFiles } from '../services/githubService.js'
 import { formatPullRequestDiff } from '../services/diffFormatter.js'
+import { generateAiReview } from '../services/aiReviewService.js'
 
 const router = express.Router()
 
@@ -32,7 +33,9 @@ router.post('/review', async (req, res) => {
     const formattedDiff = formatPullRequestDiff(githubFiles)
     console.log(formattedDiff.slice(0,1000))
 
-    const reviewData = createFakeReview(prUrl, parsedPr, githubPr, githubFiles)
+    const aiReview = await generateAiReview(formattedDiff)
+
+    const reviewData = createFakeReview(prUrl, parsedPr, githubPr, githubFiles, aiReview)
     res.json(reviewData)
 
   } catch (error){

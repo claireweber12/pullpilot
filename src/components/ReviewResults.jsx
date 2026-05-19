@@ -1,6 +1,7 @@
 import FindingCard from './FindingCard'
 import FindingSection from './FindingSection'
 import VerdictCard from './VerdictCard'
+import ChangedFiles from './changedFiles'
 
 function ReviewResults({ data }) {
     //https://github.com/facebook/react/pull/123
@@ -30,6 +31,7 @@ function ReviewResults({ data }) {
                 By {data.pr.author} • {data.pr.filesChanged} files changed • +{data.pr.additions} / -{data.pr.deletions}
             </p>
       </div>
+      <ChangedFiles files={data.pr.files} />
       <div className="mt-4 flex flex-wrap gap-3">
             <span className="rounded-full bg-amber-100 px-3 py-1 text-sm font-medium text-amber-800">
                 {formatLabel(data.review.riskLevel)} Risk

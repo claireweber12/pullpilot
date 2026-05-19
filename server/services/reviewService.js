@@ -7,7 +7,7 @@ export function createFakeReview(prUrl, parsedPr, githubPr, githubFiles) {
       additions: githubPr.additions,
       deletions: githubPr.deletions,
       url: githubPr.html_url,
-      repo: `{parsedPr.owner}/${parsedPr.repo}`,
+      repo: `${parsedPr.owner}/${parsedPr.repo}`,
       pullNumber: parsedPr.pullNumber,
       files: githubFiles.map((file) => ({
       filename: file.filename,

@@ -1,12 +1,14 @@
-export function createFakeReview(prUrl, parsedPr) {
+export function createFakeReview(prUrl, parsedPr, githubPr) {
   return {
     pr: {
-      title: `Review for ${parsedPr.owner}/${parsedPr.repo} PR #${parsedPr.pullNumber}`,
-      author: 'JohnDoe',
-      filesChanged: 4,
-      additions: 128,
-      deletions: 32,
-      url: prUrl,
+      title: githubPr.title,
+      author: githubPr.user.login,
+      filesChanged: githubPr.changed_files,
+      additions: githubPr.additions,
+      deletions: githubPr.deletions,
+      url: githubPr.html_url,
+      repo: `{parsedPr.owner}/${parsedPr.repo}`,
+      pullNumber: parsedPr.pullNumber,
     },
     review: {
       summary:

@@ -7,6 +7,14 @@ const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
 })
 
+
+function cleanJsonResponse(text) {
+  return text
+    .replace(/```json/g, '')
+    .replace(/```/g, '')
+    .trim()
+}
+
 export async function generateAiReview(formattedDiff) {
   const prompt = `
 You are a senior software engineer reviewing a GitHub pull request.
@@ -69,6 +77,8 @@ ${formattedDiff}
 
     const text = completion.choices[0].message.content
 
+    const cleanedText = cleanJsonResponse(text)
+    return JSON.parse(cleanedText)
     return JSON.parse(text)
   } catch (error) {
     console.error('AI review failed:', error.message)

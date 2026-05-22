@@ -38,6 +38,14 @@ The review includes a summary, risk level, potential bugs, edge cases, style iss
 6. Groq generates a structured review.
 7. The frontend displays the review in categorized cards.
 
+## Screenshots
+<img width="2880" height="1630" alt="image" src="https://github.com/user-attachments/assets/ed0f0469-894d-44b3-ac03-48c15cad8412" />
+<img width="2880" height="1630" alt="image" src="https://github.com/user-attachments/assets/8b62c143-d030-4516-b40c-4ad23d54c995" />
+
+<img width="2880" height="1630" alt="image" src="https://github.com/user-attachments/assets/01e22f86-3b47-44fd-854f-21c84a36fa11" />
+
+
+
 ## Local Setup
 
 Clone the repository:

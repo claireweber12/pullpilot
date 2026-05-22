@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 import ReviewResults from './components/ReviewResults'
 import {analyzePr} from './services/reviewService'
 import LoadingReview from './components/LoadingReview'
+import HowItWorks from './components/HowItWorks'
 
 function App() {
   const [reviewData, setReviewData] = useState(null)
@@ -27,6 +28,7 @@ function App() {
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-10">
       <Hero onAnalyze={handleAnalyze} />
+      {!isLoading && !reviewData && !error && <HowItWorks />}
       {error && (
         <div className="mx-auto mt-8 max-w-2xl rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
           {error}

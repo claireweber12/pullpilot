@@ -31,7 +31,7 @@ function PRInputForm({ onAnalyze, isLoading }) {
         
         setError('')
         onAnalyze(prUrl.trim())
-        console.log(parsedUrl)
+        
     }
     return (
         <div className='mt-10 w-full max-w-2xl'>

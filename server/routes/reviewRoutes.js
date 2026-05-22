@@ -22,7 +22,7 @@ router.post('/review', async (req, res) => {
       parsedPr.repo, 
       parsedPr.pullNumber
     )
-    console.log(githubPr.title)
+    
 
     const githubFiles = await getPullRequestFiles(
     parsedPr.owner,
@@ -31,7 +31,7 @@ router.post('/review', async (req, res) => {
     )
 
     const formattedDiff = formatPullRequestDiff(githubFiles)
-    console.log(formattedDiff.slice(0,1000))
+    
 
     const aiReview = await generateAiReview(formattedDiff)
 

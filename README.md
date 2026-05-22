@@ -56,7 +56,7 @@ GROQ_API_KEY=your_groq_api_key_here
 ```
 Start the backend
 ```bash
-npm runn server
+npm run server
 ```
 Start the frontend in a different terminal
 ```bash

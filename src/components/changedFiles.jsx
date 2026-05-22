@@ -10,9 +10,9 @@ function ChangedFiles({ files }) {
       </h3>
 
       <div className="mt-3 space-y-2">
-        {files.map((file, index) => (
+        {files.map((file) => (
           <div
-            key={index}
+            key={file.filename}
             className="flex flex-col gap-1 rounded-lg bg-white p-3 sm:flex-row sm:items-center sm:justify-between"
           >
             <p className="font-mono text-sm text-slate-700">

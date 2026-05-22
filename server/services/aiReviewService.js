@@ -79,7 +79,6 @@ ${formattedDiff}
 
     const cleanedText = cleanJsonResponse(text)
     return JSON.parse(cleanedText)
-    return JSON.parse(text)
   } catch (error) {
     console.error('AI review failed:', error.message)
 

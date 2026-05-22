@@ -1,5 +1,5 @@
 import './App.css'
-import {useState} from 'react'
+import {useState, useRef} from 'react'
 import Hero from './components/Hero'
 import ReviewResults from './components/ReviewResults'
 import {analyzePr} from './services/reviewService'
@@ -10,15 +10,24 @@ function App() {
   const [reviewData, setReviewData] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+  const abortControllerRef = useRef(null)
+
   async function handleAnalyze(prUrl) {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort()
+    }
+    const controller = new AbortController()
+    abortControllerRef.current = controller
+
     setIsLoading(true)
     setReviewData(null)
     setError('')
 
     try{
-      const data = await analyzePr(prUrl)
+      const data = await analyzePr(prUrl, controller.signal)
       setReviewData(data)
     } catch (error){
+      if (error.name === 'AbortError') return
       console.error(error)
       setError(error.message)
     } finally{

@@ -5,7 +5,7 @@ import reviewRoutes from './routes/reviewRoutes.js'
 
 dotenv.config()
 const app = express()
-const PORT = process.env.port || 5050
+const PORT = process.env.PORT || 5050
 
 app.use(cors())
 app.use(express.json())

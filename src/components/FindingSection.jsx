@@ -12,7 +12,7 @@ function FindingSection({ title, findings, type }) {
                 {hasFindings ? (
                     findings.map((finding, index) => (
                     <FindingCard
-                        key={index}
+                        key={finding.issue || finding.case || finding.file || index}
                         finding={finding}
                         type={type}
                     />

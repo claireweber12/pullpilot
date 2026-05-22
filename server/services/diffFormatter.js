@@ -32,5 +32,8 @@ ${file.patch}
     })
     .join('\n---\n')
 
+  if (formattedDiff.length > 12000) {
+    console.warn(`Diff truncated from ${formattedDiff.length} to 12000 characters`)
+  }
   return formattedDiff.slice(0, 12000)
 }

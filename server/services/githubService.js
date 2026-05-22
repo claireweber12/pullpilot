@@ -13,7 +13,7 @@ export async function getPullRequest(owner, repo, pullNumber){
 
     if(!response.ok){
       const errorText = await response.text()
-      throw new Error(`Failed to fetch pull request from Github: ${response.status} ${response.statusText} - ${response.statusText}`)
+      throw new Error(`Failed to fetch pull request from Github: ${response.status} ${response.statusText} - ${errorText}`)
 
     }
 
@@ -35,7 +35,7 @@ export async function getPullRequestFiles(owner, repo, pullNumber) {
 
   if (!response.ok) {
     const errorText = await response.text()
-    throw new Error(`Failed to fetch pull request files from GitHub: ${response.status} ${response.statusText} - ${response.errorText}`)
+    throw new Error(`Failed to fetch pull request files from GitHub: ${response.status} ${response.statusText} - ${errorText}`)
   }
 
   return response.json()

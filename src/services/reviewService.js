@@ -1,6 +1,6 @@
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5050'
 export async function analyzePr(prUrl) {
-  const response = await fetch('http://localhost:5050/api/review', {
+  const response = await fetch(`${API_BASE_URL}/api/review`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

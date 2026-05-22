@@ -3,6 +3,7 @@ import {useState} from 'react'
 import Hero from './components/Hero'
 import ReviewResults from './components/ReviewResults'
 import {analyzePr} from './services/reviewService'
+import LoadingReview from './components/LoadingReview'
 
 function App() {
   const [reviewData, setReviewData] = useState(null)
@@ -31,6 +32,8 @@ function App() {
           {error}
         </div>
       )}
+      {isLoading && <LoadingReview />}
+      
       {reviewData && <ReviewResults data={reviewData} />}
     </main>
   )
